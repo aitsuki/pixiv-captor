@@ -1,0 +1,5 @@
+{
+    "commentTranslate.targetLanguage": "zh-CN",
+    "go.testFlags": ["-v"],
+    "go.buildTags": "json1"
+}

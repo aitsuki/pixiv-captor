@@ -3,7 +3,7 @@ package app
 import (
 	"time"
 
-	"aitsuki.com/pixiv-capture/data"
+	"github.com/aitsuki/pixiv-captor/data"
 )
 
 type IllustData struct {

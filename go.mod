@@ -1,4 +1,4 @@
-module aitsuki.com/pixiv-capture
+module github.com/aitsuki/pixiv-captor
 
 go 1.17
 

@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"time"
 
-	"aitsuki.com/pixiv-capture/data"
+	"github.com/aitsuki/pixiv-captor/data"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/mattn/go-sqlite3"

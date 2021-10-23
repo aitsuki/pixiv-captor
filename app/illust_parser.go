@@ -6,12 +6,6 @@ import (
 	"aitsuki.com/pixiv-capture/data"
 )
 
-type PixivData struct {
-	Error   bool        `json:"error"`
-	Message bool        `json:"message"`
-	Body    interface{} `json:"body"`
-}
-
 type IllustData struct {
 	ID          string     `json:"id"`
 	Title       string     `json:"title"`
@@ -23,32 +17,6 @@ type IllustData struct {
 	UploadDate  time.Time  `json:"uploadDate"`
 	Tags        TagsData   `json:"tags"`
 	Pages       []PageData `json:"pages"`
-}
-
-type TagsData struct {
-	Tags []TagData `json:"tags"`
-}
-
-type TagData struct {
-	Tag         string           `json:"tag"`
-	Translation *TranslationData `json:"translation,omitempty"`
-}
-
-type TranslationData struct {
-	En string `json:"en"`
-}
-
-type PageData struct {
-	Urls   UrlsData `json:"urls"`
-	Width  int      `json:"width"`
-	Height int      `json:"height"`
-}
-
-type UrlsData struct {
-	ThumbMini string `json:"thumb_mini"`
-	Small     string `json:"small"`
-	Regular   string `json:"regular"`
-	Original  string `json:"original"`
 }
 
 func (a *IllustData) isR18() bool {
@@ -79,9 +47,27 @@ func (a *IllustData) pages() []data.IllustPage {
 	return pages
 }
 
+type TagsData struct {
+	Tags []TagData `json:"tags"`
+}
+
+type TagData struct {
+	Tag         string           `json:"tag"`
+	Translation *TranslationData `json:"translation,omitempty"`
+}
+
+type TranslationData struct {
+	En string `json:"en"`
+}
+
+type PageData struct {
+	Urls   UrlsData `json:"urls"`
+	Width  int      `json:"width"`
+	Height int      `json:"height"`
+}
+
 func (p *PageData) toPageEntity(illustID string, i int) data.IllustPage {
 	return data.IllustPage{
-		IllustID: illustID,
 		P:        i,
 		Width:    p.Width,
 		Height:   p.Height,
@@ -90,6 +76,13 @@ func (p *PageData) toPageEntity(illustID string, i int) data.IllustPage {
 		Regular:  p.Urls.Regular,
 		Original: p.Urls.Original,
 	}
+}
+
+type UrlsData struct {
+	ThumbMini string `json:"thumb_mini"`
+	Small     string `json:"small"`
+	Regular   string `json:"regular"`
+	Original  string `json:"original"`
 }
 
 func (a *IllustData) ToEntity() *data.Illust {

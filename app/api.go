@@ -19,11 +19,11 @@ func Run(port int, dbPath string) error {
 	if err != nil {
 		return err
 	}
-	dao, err := data.NewIllustDao(db)
+	repo := data.NewIllustRepository(db)
+	repo.Prepare()
 	if err != nil {
 		return err
 	}
-	repo := data.NewIllustRepository(dao)
 	r := gin.Default()
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"https://www.pixiv.net"},
@@ -71,7 +71,7 @@ func checkExists(repo *data.IllustRepository) gin.HandlerFunc {
 func get(repo *data.IllustRepository) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
-		illust, err := repo.GetById(id)
+		illust, err := repo.GetByID(id)
 		if err != nil {
 			c.Status(http.StatusNotFound)
 		} else {
@@ -85,13 +85,17 @@ func query(repo *data.IllustRepository) gin.HandlerFunc {
 		r18Str := c.DefaultQuery("r18", "0")
 		r18, err := strconv.Atoi(r18Str)
 		if err != nil {
-			r18 = 0
+			c.Status(http.StatusBadRequest)
 		}
 
 		limitStr := c.DefaultQuery("limit", "1")
 		limit, err := strconv.Atoi(limitStr)
-		if err != nil {
-			limit = 1
+		if err != nil || limit < 1 {
+			c.Status(http.StatusBadRequest)
+		}
+
+		if limit > 100 {
+			limit = 100
 		}
 
 		q, isQuery := c.GetQuery("q")

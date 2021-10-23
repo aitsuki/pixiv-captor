@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"aitsuki.com/pixiv-capture/app"
+	"github.com/aitsuki/pixiv-captor/services"
 )
 
 func main() {
@@ -22,5 +22,5 @@ func main() {
 	if len(username) == 0 || len(password) == 0 {
 		log.Fatal("为了安全性考虑，请设置管理员账户和密码。")
 	}
-	log.Fatal(app.Run(port, dbPath, logPath, username, password))
+	log.Fatal(services.Run(port, dbPath, logPath, username, password))
 }

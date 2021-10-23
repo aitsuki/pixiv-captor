@@ -167,3 +167,13 @@ func Test_Search(t *testing.T) {
 		})
 	}
 }
+
+func Test_Delete(t *testing.T) {
+	repo := NewIllustRepository(openTestDB(t))
+	repo.Prepare()
+	repo.Save(&testData)
+	err := repo.Delete(testData.ID)
+	if err != nil {
+		t.Fatal("Failed to delete data:", err)
+	}
+}

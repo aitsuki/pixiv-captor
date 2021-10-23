@@ -93,6 +93,11 @@ func (repo *IllustRepository) Search(r18 int, q string, limit int) ([]Illust, er
 	return scanRows(rows)
 }
 
+func (repo *IllustRepository) Delete(id string) error {
+	_, err := repo.db.Exec(`delete from illusts where id = ?`, id)
+	return err
+}
+
 func scanRows(rows *sql.Rows) ([]Illust, error) {
 	illusts := make([]Illust, 0)
 	for rows.Next() {

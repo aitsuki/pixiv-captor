@@ -1,5 +1,7 @@
 # PixivCaptor
 
+PixivCaptor has a chrome extension to capture pixiv illusts. See [pixiv-captor-extension](https://github.com/aitsuki/pixiv-captor-extension).
+
 ## Build & Run
 
 ```bash

@@ -12,8 +12,9 @@ type Illust struct {
 	Author      string       `json:"author"`
 	Account     string       `json:"account"`
 	R18         bool         `json:"r18"`
-	CreateDate  time.Time    `json:"create_date"`
-	UploadDate  time.Time    `json:"upload_date"`
+	CreateDate  time.Time    `json:"createDate"`
+	UploadDate  time.Time    `json:"uploadDate"`
+	CaptureAt   time.Time    `json:"captureAt"`
 	Tags        []string     `json:"tags"`
 	Pages       []IllustPage `json:"pages"`
 }

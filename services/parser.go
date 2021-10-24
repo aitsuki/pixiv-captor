@@ -96,6 +96,7 @@ func (a *IllustData) ToEntity() *data.Illust {
 		R18:         a.isR18(),
 		CreateDate:  a.CreateDate,
 		UploadDate:  a.UploadDate,
+		CaptureAt:   time.Now().UTC(),
 		Tags:        a.stringTags(),
 		Pages:       a.pages(),
 	}

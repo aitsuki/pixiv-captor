@@ -32,7 +32,7 @@ Request `www.pixiv.net/ajax/illust/:id` and `www.pixiv.net/ajax/illust/:id/pages
 
 Then splicing pages body to illust body.
 
-```
+```text
 {
     "id": "xxxxx", <--- illust
     "...": "...", <--- illust
